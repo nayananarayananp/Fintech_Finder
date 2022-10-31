@@ -9,6 +9,7 @@ import os
 import requests
 from dotenv import load_dotenv
 load_dotenv()
+from mnemonic import Mnemonic
 from bip44 import Wallet
 from web3 import Account
 from web3 import middleware
@@ -21,6 +22,10 @@ def generate_account():
     """Create a digital wallet and Ethereum account from a mnemonic seed phrase."""
     # Fetch mnemonic from environment variable.
     mnemonic = os.getenv("MNEMONIC")
+    if mnemonic is None:
+        mnemo = Mnemonic("english")
+        mnemonic = mnemo.generate(strength=128)
+
 
     # Create Wallet Object
     wallet = Wallet(mnemonic)

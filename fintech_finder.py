@@ -68,10 +68,7 @@ st.sidebar.write(account.address)
 
 # Call `get_balance` function and pass it your account address
 # Write the returned ether balance to the sidebar
-def write_etherium_balance(address):
-    ether_balance = w3.eth.getBalance(account.address)
-    st.sidebar.write(f"Account Balance: {ether_balance:.2f}")
-write_etherium_balance(account.address)
+st.sidebar.write(get_balance(w3, account.address))
 ##########################################
 
 # Create a select box to chose a FinTech Hire candidate
@@ -114,7 +111,7 @@ st.sidebar.markdown("## Total Wage in Ether")
 # Calculate total `wage` for the candidate by multiplying the candidate’s hourly
 # rate from the candidate database (`candidate_database[person][3]`) by the
 # value of the `hours` variable
-wage = hourly_rate*hours
+wage = hourly_rate * hours
 
 # Write the `wage` calculation to the Streamlit sidebar
 st.sidebar.write(wage)
